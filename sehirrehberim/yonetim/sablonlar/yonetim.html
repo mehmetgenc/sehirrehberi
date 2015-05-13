@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Şehir Rehberim: Yönetim İşlemleri</title>
+</head>
+<body>
+	<h1>Yönetim İşlemleri</h1>
+{% if request.user.is_authenticated %}
+    <h3>Hoş geldin {{ request.user.get_full_name }}</h3>
+{% endif %}
+
+<a href="/kampanya-ekle/">Kampanya Ekle</a>
+<p>
+<a href="/kampanya-listesi/">Kampanya Listesi</a>
+<p>
+<a href="/accounts/logout/">Çıkış Yap</a>
+
+ 
+</body>
+</html>

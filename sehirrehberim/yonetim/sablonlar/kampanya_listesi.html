@@ -1,0 +1,40 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Kampanya Listesi</title>
+</head>
+<body>
+<h1>Kampanyalar</h1>
+<form method="GET">
+	{{arama_formu.aranacak_kelime.errors}}
+	{{arama_formu.aranacak_kelime.label}}
+	{{arama_formu.aranacak_kelime}}
+	<input type="submit" value="Bul">
+</form>
+
+{% if aranacak_kelime %}
+<h3>Aradığınız "{{aranacak_kelime}}" için bulunan sonuçlar:</h3>
+{% endif %}
+
+<table border="1">
+<tr><th>Sıra</th><th>Firma</th><th>Baslık</th></tr>
+
+{% for kampanyalar in kampanya_verileri %}
+	<tr>
+		<td><a href="/kampanya-ekleme/?id= {{ kampanyalar.id }}"> {{forloop.counter}}</td>
+		<td><a href="/kampanya-ekleme/?id= {{ kampanyalar.id }}"> {{kampanyalar.firma}}</td>
+		<td><a href="/kampanya-ekleme/?id= {{ kampanyalar.id }}"> {{kampanyalar.baslik}}</td>
+	</tr>
+{% endfor %}
+
+</table>
+{% if kampanya_verileri.has_previous %}
+	<a href="?sayfa={{ kampanya_verileri.previous_page_number }}"> Önceki</a>
+	{% endif %}
+Sayfa {{ kampanya_verileri.number }} / {{ kampanya_verileri.paginator.num_pages }}
+{% if kampanya_verileri.has_next %}
+	<a href="?sayfa={{ kampanya_verileri.next_page_number }}"> Sonraki</a>
+	{% endif %}
+<p><a href="/kampanya-ekle/">Yeni Kayıt</a>
+</body>
+</html>

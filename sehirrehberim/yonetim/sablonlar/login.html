@@ -1,0 +1,37 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html>
+<head>
+<title>Yönetim: Giriş</title>
+</head>
+<body>
+<h1>Kullanıcı Girişi</h1>
+{% if form.errors %}
+<div class="errornote"><p>Kullanıcı adı ya da parolası yanlış.</p></div>
+{% endif %}
+
+<form method="POST">
+	{% csrf_token %}
+	<table>
+		<tr>
+			<td>{{ form.username.label_tag }}</td>
+			<td>{{ form.username }}</td>
+		</tr>
+		<tr>
+			<td>{{ form.password.label_tag }}</td>
+			<td>{{ form.password }}</td>
+		</tr>
+	</table>
+	
+	<input type="submit" value="Giriş Yap"/>
+	
+	{% if next %}
+		<input type="hidden" name="next" value="{{ next }}"/>
+	{% else %}
+		<input type="hidden" name="next" value="/yonetim/"/>
+	{% endif %}	
+	
+</form>
+	<a href="/accounts/register/">Kaydol</a>
+</body>
+</html>
+		
